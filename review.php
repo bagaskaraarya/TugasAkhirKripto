@@ -7,12 +7,49 @@
 
 ?>
 
+<?php
+
+    function caesarCipherEncrypt($text, $shift = 12){
+        $result = "";
+        $shift = $shift % 26;
+
+        for($i = 0; $i < strlen($text); $i++){
+            $char = $text[$i];
+
+            if(ctype_upper($char)){
+                $result .= chr(((ord($char) - 65 + $shift) %26) + 65);
+            } elseif(ctype_lower($char)){
+                $result .= chr(((ord($text) - 97 + $shift) % 26) + 97);
+            } else{
+                $result .= $char;
+            }
+        }
+        return $result;
+    }
+
+    function caesarCipherDecrypt($text, $shift = 12){
+        return caesarCipherDecrypt($text, 26 - $shift);
+    }
+
+    $plaintext = "";
+    $shift = 12; // Default shift
+    $encryptedText = "";
+    $decryptedText = "";
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Review Film</title>
+    <script>
+        function showResult(encrypted, decrypted){
+            alert("Hasil Enkripsi : " + encrypted + "\n Hasil Deskripsi : " + decrypted);
+        }
+    </script>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -40,7 +77,7 @@
             <div class="offcanvas-body offcanvassendiri">
                 <center> <h3><?php echo $_SESSION['nama']; ?></h3></center>
                 <?php if($_SESSION['level'] == 'admin'){?>
-                <a href="tableuser.php"><button type="button" class="btn w-100 " style="background-color: white; box-shadow: 7px 7px #505050;">
+                <a href="dekripsi.php"><button type="button" class="btn w-100 " style="background-color: white; box-shadow: 7px 7px #505050;">
                   Decryption 
                 </button></a>
                 <?php } ?>
@@ -64,15 +101,20 @@
 
     <div class="container-xl" style="background-color: #EEEEEE; padding: top 30px;">
         <h1 class="head">Review Film</h1>
-        <form action="inputreview.php" method="POST">
+        <form action="prosesreview.php" method="POST">
             <label for="">Nama Film</label>
             <div class="input-group flex-nowrap">
-                <input type="text" class="form-control" aria-label="Username" aria-describedby="addon-wrapping" style="margin-bottom:20px;">
+                <input type="text" name="namaFilm" id="namaFilm" class="form-control" aria-label="Username" aria-describedby="addon-wrapping" style="margin-bottom:20px;">
             </div>
 
             <label for="">Review Film</label>
             <div class="form-floating">
-                <textarea class="form-control" id="floatingTextarea2" style="height: 100px; padding-top: 10px; margin-bottom: 20px;"></textarea>
+                <textarea class="form-control" id="floatingTextarea2" style="height: 100px; padding-top: 10px; margin-bottom: 20px;" name="plaintext"></textarea>
+            </div>
+
+            <label for="">Kunci RC4</label>
+            <div>
+            <input type="text" name="rc4_key" id="rc4_key" class="form-control" aria-label="Username" aria-describedby="addon-wrapping" style="margin-bottom:20px;">
             </div>
             <input class="btn btn-primary" type="submit" value="Submit" style="margin-bottom: 20px;">
         </form>

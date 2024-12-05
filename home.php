@@ -40,7 +40,7 @@
             <div class="offcanvas-body offcanvassendiri">
                 <center> <h3><?php echo $_SESSION['nama']; ?></h3></center>
                 <?php if($_SESSION['level'] == 'admin'){?>
-                <a href="tableuser.php"><button type="button" class="btn w-100 " style="background-color: white; box-shadow: 7px 7px #505050;">
+                <a href="dekripsi.php"><button type="button" class="btn w-100 " style="background-color: white; box-shadow: 7px 7px #505050;">
                   Decryption 
                 </button></a>
                 <?php } ?>

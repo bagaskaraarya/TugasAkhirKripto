@@ -14,36 +14,16 @@
 	<section class="header-login pt-5">
 		<div class="container-fluid login">
 			<div class="header-container-login">
-				<h1 class="header-login">Login</h1>
+				<h1 class="header-login">Decryption</h1>
 			</div>
 			<div class="line"></div>
 			<div class="body-container-login">
 				<br>
-				<form action="cek_login.php" method="POST">
-					<label for="">Username</label>
-					<br>
-					<input type="text" name="username" class="username">
-					<br>
-					<br>
-					<label for="">Password</label>
-					<br>
-				 	<input type="password" name="password" class="password">
-					<br>
-					<br>
-					<input type="submit" value="Login" class="btnlogin">
-					<a class="btn btn-secondary" href="register.php" role="button" style="width: 150px;">Register</a>
-					<p style="margin-left: 45px; font-family='Poppins', sans-serif;"><?php
-						if (isset($_GET['pesan'])) {
-							if ($_GET['pesan'] == "gagal") {
-								echo "Login gagal! username dan password salah !";
-							} else if ($_GET['pesan'] == "logout") {
-								echo 'Anda berhasil logout ! ';
-							} elseif ($_GET['pesan'] == "belum_login") {
-								echo 'Anda harus login terlebih dahulu !';
-							}
-						}
-					?></p>
 				</form>
+                <div class="dekripsi">
+                    <a href="tampilanaes.php"><button type="button" class="btn btn-primary btn-lg btnAES" style="margin-bottom: 10px; width: 150px; margin-left: 100px;">AES</button></a>
+                </div>
+                <a href="home.php"><button type="button" class="btn btn-primary btn-lg btnBackHome" style="margin-left: 100px; width: 150px; margin-bottom: 10px;">Back</button></a>
 			</div>
 		</div>
 	</section>

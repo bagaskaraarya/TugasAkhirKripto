@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Steganografi LSB</title>
-    <link rel="stylesheet" href="stylekritik.css">
+    <title>Enkripsi & Dekripsi PDF dengan AES</title>
+    <link rel="stylesheet" href="styleaes.css">
 </head>
 <body>
     <div class="container">
-        <h1>Steganografi LSB</h1>
-        <form action="steganography.php" method="POST" enctype="multipart/form-data">
+        <h1>Enkripsi & Dekripsi PDF dengan AES</h1>
+        <form action="aes.php" method="POST" enctype="multipart/form-data">
             <div class="form-group">
-                <label for="image">Pilih Gambar (PNG):</label>
-                <input type="file" name="image" id="image" accept="image/png" required>
+                <label for="file">Pilih File PDF:</label>
+                <input type="file" name="file" id="file" accept=".pdf" required>
             </div>
             <div class="form-group">
-                <label for="message">Pesan Rahasia:</label>
-                <textarea name="message" id="message" rows="4" placeholder="Tulis pesan..." required></textarea>
+                <label for="key">Masukkan Kunci (16, 24, atau 32 karakter):</label>
+                <input type="text" name="key" id="key" required minlength="16" maxlength="32" placeholder="Masukkan kunci">
             </div>
             <button type="submit" name="action" value="encrypt">Enkripsi</button>
             <button type="submit" name="action" value="decrypt">Dekripsi</button>
